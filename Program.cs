@@ -1,8 +1,16 @@
+using Dynatron.Services.Interfaces;
+using Dynatron.Services;
+using Dynatron.Repositories.Interfaces;
+using Dynatron.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var app = builder.Build();
 
