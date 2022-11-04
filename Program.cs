@@ -1,12 +1,19 @@
+using Microsoft.EntityFrameworkCore;
 using Dynatron.Services.Interfaces;
 using Dynatron.Services;
 using Dynatron.Repositories.Interfaces;
 using Dynatron.Repositories;
+using Dynatron.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// DB Connection
+var connectionString = builder.Configuration.GetConnectionString("Dynatron");
+builder.Services.AddDbContextPool<DynatronContext>(option =>
+option.UseSqlServer(connectionString)
+);
 
+// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
