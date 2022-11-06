@@ -17,9 +17,16 @@ public class CustomerController : ControllerBase
     }
 
 
-    [HttpGet]
+    [HttpGet]    
     public IActionResult Get()
     {
         return Ok(_customerService.GetCustomers());
+    }
+
+    [HttpPost]
+    [HttpOptions]
+    public IActionResult Post([FromBody]Customer customer)
+    {
+        return Ok(_customerService.AddCustomer(customer));
     }
 }

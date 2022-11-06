@@ -6,5 +6,7 @@ namespace Dynatron.Services.Interfaces
     {
         List<Customer> GetCustomers();
 
+        Customer AddCustomer(Customer customer);
+
     }
 }

@@ -9,7 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import  { CustomerGridComponent } from './customer-grid/customer-grid.component';
+import { CustomerGridComponent } from './customer-grid/customer-grid.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import  { CustomerGridComponent } from './customer-grid/customer-grid.component'
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    CustomerGridComponent
+    CustomerGridComponent,
+    AddCustomerComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

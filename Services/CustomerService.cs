@@ -18,5 +18,10 @@ namespace Dynatron.Services
         {
             return _customerRepository.GetCustomers();;
         }
+
+        public Customer AddCustomer(Customer customer)
+        {
+            return _customerRepository.AddCustomer(customer);
+        }
     }
 }
