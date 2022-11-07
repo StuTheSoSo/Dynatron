@@ -10,5 +10,7 @@ namespace Dynatron.Services.Interfaces
 
         Customer UpdateCustomer(Customer customer);
 
+        bool Exists(Customer customer);
+
     }
 }

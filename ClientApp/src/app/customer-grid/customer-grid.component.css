@@ -8,6 +8,15 @@
     padding: 1em;
 }
 
+.addCustomerDiv > table > tr > td {
+    padding: 1em;
+    text-align: center;
+}
+
+.validation{
+    color: red;
+}
+
 .existingCustomersDiv{
     padding: 1em;
     margin: 1em;

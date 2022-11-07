@@ -1,11 +1,20 @@
 <div class="addCustomerDiv">
     <h3>Add Customer</h3>
-    <div>
-        <span>First Name: <input [(ngModel)]="customer.firstName" /></span>
-        <span>Last Name: <input [(ngModel)]="customer.lastName" /></span>
-        <span>Email: <input [(ngModel)]="customer.emailAddress" /></span>
-        <span><button (click)="addCustomer()">Add</button></span>
-    </div>
+    <table>
+        <tr>
+            <td>First Name: <input [(ngModel)]="customer.firstName"/></td>
+            <td>Last Name: <input [(ngModel)]="customer.lastName" /></td>
+            <td>Email: <input [(ngModel)]="customer.emailAddress" /></td>
+            <td><button (click)="addCustomer()">Add</button></td>
+        </tr>
+        <tr>
+            <td class="validation"><span *ngIf="validation.firstName">First Name is Required</span></td>
+            <td class="validation"><span *ngIf="validation.lastName">Last Name is Required</span></td>
+            <td class="validation"><span *ngIf="validation.emailAddress">Email Address is Required</span></td>
+            <td></td>
+        </tr>
+    </table>
+    
 </div>
 <div class="existingCustomersDiv">
     <h3>Existing Customers</h3>

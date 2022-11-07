@@ -9,5 +9,7 @@ namespace Dynatron.Repositories.Interfaces
         List<Customer> AddCustomer(Customer customer);
 
         Customer UpdateCustomer(Customer customer);
+
+        bool Exists(Customer customer);
     }
 }
