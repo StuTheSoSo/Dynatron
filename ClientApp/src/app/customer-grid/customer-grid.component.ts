@@ -12,8 +12,7 @@ export class CustomerGridComponent {
   public customers: Customer[] = [];
   private _httpClient: HttpClient;
   private _baseUrl: string = '';
-  public customer: Customer = { id: 0, firstName: '', lastName: '', emailAddress: '' }
-  private editingCustomers: Customer[] = [];
+  public customer: Customer = { id: 0, firstName: '', lastName: '', emailAddress: '' };
   public validation: any = { firstName: null };
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
@@ -42,14 +41,17 @@ export class CustomerGridComponent {
   }
 
   public toggleEdit(customer: Customer) {
-    // Capture existing customer info in case of cancel
-    this.editingCustomers.push({ ...customer });
+    // Capture existing customer info in case of cancel.
+    // Requirements specify using session storage
+    let existing = sessionStorage.getItem('editingCustomers');
+    sessionStorage.setItem("dynatron_" + customer.id, JSON.stringify(customer));
   }
 
   public cancel(customer: Customer) {
     // Cancel editing
-    const foundItem = this.editingCustomers.find(i => i.id === customer.id);
-    if (foundItem) {
+    const foundstring = sessionStorage.getItem("dynatron_" + customer.id);
+    if (foundstring && foundstring.length > 0) {
+      var foundItem = JSON.parse(foundstring);
       // reset all values for this customer
       var editedCustomer = this.customers.find(i => i.id === customer.id);
       if (editedCustomer) {
@@ -59,7 +61,7 @@ export class CustomerGridComponent {
 
       }
       // Remove this from the editing customers
-      this.editingCustomers.splice(this.editingCustomers.indexOf(foundItem), 1);
+      sessionStorage.removeItem("dynatron_" + customer.id);
     }
   }
 
@@ -76,11 +78,8 @@ export class CustomerGridComponent {
 
   public isEditing(customer: Customer): boolean {
     // determine if this user is being edited
-    const foundItem = this.editingCustomers.find(i => i.id === customer.id);
-    if (foundItem) {
-      return this.editingCustomers.indexOf(foundItem) > -1;
-    }
-    return false;
+    const foundstring = sessionStorage.getItem("dynatron_" + customer.id);
+      return (foundstring !== null && foundstring.length > 0);
   }
 
   public validate(customer: Customer): boolean {
