@@ -8,3 +8,5 @@ Running in Development using the Visual Studio Code debugger
 
 ## Other notes
 -This demo was written to satisfy requirements, and be ready on Monday morning. Given more time and requirements more error handling, logging, unit tests and validation would have been implemented.
+
+-Included SQL Create script to generate and populate the database.
