@@ -27,6 +27,13 @@ public class CustomerController : ControllerBase
     [HttpOptions]
     public IActionResult Post([FromBody]Customer customer)
     {
+        // Update Customer
+        return Ok(_customerService.UpdateCustomer(customer));
+    }
+
+    [HttpPut]
+    public IActionResult Put(Customer customer)
+    {
         return Ok(_customerService.AddCustomer(customer));
     }
 }

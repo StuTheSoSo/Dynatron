@@ -1,0 +1,12 @@
+.titleDiv{
+    padding: 1em;
+    margin: 1em;
+}
+
+
+.mainDiv{
+    border: 1px solid gray;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em;
+}

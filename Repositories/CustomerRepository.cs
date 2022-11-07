@@ -19,14 +19,28 @@ namespace Dynatron.Repositories
             return _context.Customers.ToList();
         }
 
-        public Customer AddCustomer(Customer customer)
+        public List<Customer> AddCustomer(Customer customer)
         {
+            customer.CreatedDate = DateTime.UtcNow;
+            customer.LastUpdatedDate = DateTime.UtcNow;
             _context.Customers.Add(customer);
             _context.SaveChanges();
-            var addedCustomer = _context.Customers.FirstOrDefault(c => c.FirstName.ToLower() == customer.FirstName.ToLower()
-            && c.LastName.ToLower() == customer.LastName.ToLower() && c.EmailAddress.ToLower() == customer.EmailAddress.ToLower());
+            return this.GetCustomers();
+        }
 
-            return addedCustomer;
+        public Customer UpdateCustomer(Customer customer)
+        {
+            var foundCustomer = _context.Customers.FirstOrDefault(c => c.Id == customer.Id);
+            if(foundCustomer != null)
+            {
+                foundCustomer.FirstName = customer.FirstName;
+                foundCustomer.LastName = customer.LastName;
+                foundCustomer.EmailAddress = customer.EmailAddress;
+                foundCustomer.LastUpdatedDate = DateTime.UtcNow;
+                _context.SaveChanges();
+                return foundCustomer;
+            }
+            return null;
         }
     }
 }

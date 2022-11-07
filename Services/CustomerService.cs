@@ -16,12 +16,17 @@ namespace Dynatron.Services
 
         public List<Customer> GetCustomers()
         {
-            return _customerRepository.GetCustomers();;
+            return _customerRepository.GetCustomers().OrderBy(c=> c.Id).ToList();
         }
 
-        public Customer AddCustomer(Customer customer)
+        public List<Customer> AddCustomer(Customer customer)
         {
             return _customerRepository.AddCustomer(customer);
+        }
+
+        public Customer UpdateCustomer(Customer customer)
+        {
+            return _customerRepository.UpdateCustomer(customer);
         }
     }
 }

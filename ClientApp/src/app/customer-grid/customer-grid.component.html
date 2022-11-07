@@ -1,17 +1,48 @@
-<h3>Existing Customers</h3>
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email Address</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let customer of customers">
-            <td>{{ customer.firstName }}</td>
-            <td>{{ customer.lastName }}</td>
-            <td>{{ customer.emailAddress }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="addCustomerDiv">
+    <h3>Add Customer</h3>
+    <div>
+        <span>First Name: <input [(ngModel)]="customer.firstName" /></span>
+        <span>Last Name: <input [(ngModel)]="customer.lastName" /></span>
+        <span>Email: <input [(ngModel)]="customer.emailAddress" /></span>
+        <span><button (click)="addCustomer()">Add</button></span>
+    </div>
+</div>
+<div class="existingCustomersDiv">
+    <h3>Existing Customers</h3>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let customer of customers">
+                <tr>
+                    <td>
+                        {{ customer.id }}
+                    </td>
+                    <td>
+                        <span *ngIf="!isEditing(customer)">{{ customer.firstName }}</span>
+                        <span *ngIf="isEditing(customer)"><input [(ngModel)]="customer.firstName"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="!isEditing(customer)">{{ customer.lastName }}</span>
+                        <span *ngIf="isEditing(customer)"><input [(ngModel)]="customer.lastName"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="!isEditing(customer)">{{ customer.emailAddress }}</span>
+                        <span *ngIf="isEditing(customer)"><input [(ngModel)]="customer.emailAddress"></span>
+                    </td>
+                    <td>
+                        <span *ngIf="!isEditing(customer)"><button (click)="toggleEdit(customer)">Edit</button></span>
+                        <span *ngIf="isEditing(customer)"><button (click)="cancel(customer)">Cancel</button></span>
+                        <span *ngIf="isEditing(customer)"><button (click)="save(customer)">Save</button></span>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,14 @@
+.addCustomerDiv{
+    padding: 1em;
+    margin: 1em;
+    border-bottom: 1px solid grey;
+}
+
+.addCustomerDiv > span{
+    padding: 1em;
+}
+
+.existingCustomersDiv{
+    padding: 1em;
+    margin: 1em;
+}

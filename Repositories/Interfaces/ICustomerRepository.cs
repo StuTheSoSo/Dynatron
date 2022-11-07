@@ -6,6 +6,8 @@ namespace Dynatron.Repositories.Interfaces
     {
         List<Customer> GetCustomers();
 
-        Customer AddCustomer(Customer customer);
+        List<Customer> AddCustomer(Customer customer);
+
+        Customer UpdateCustomer(Customer customer);
     }
 }
